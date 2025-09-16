@@ -1,0 +1,102 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# NeuroBoost Project Rules
+
+## Project Overview
+This is the NeuroBoost project. When working on this codebase:
+
+- Follow modern development best practices
+- Write clean, maintainable code with proper documentation
+- Use consistent naming conventions
+- Include appropriate error handling
+- Add comments for complex logic
+
+## General Guidelines
+- Always consider performance implications
+- Write tests for new functionality
+- Follow the existing code style and patterns
+- Use meaningful variable and function names
+- Keep functions focused and single-purpose
+
+## Code Quality
+- Prefer readability over cleverness
+- Use descriptive commit messages
+- Document public APIs and interfaces
+- Handle edge cases appropriately
+- Validate inputs where necessary
+
+# .cursorrules for NeuroBoost ADHD Productivity Web App
+
+# Architecture
+- Maintain modular, agent-based architecture:
+  - TaskAgent, MoodAgent, FocusAgent, MotivateAgent
+- Agents must use event-based communication (pub/sub or message bus)
+- Do not create tight coupling between agents or hardcoded interdependencies
+
+# Frontend (React + TypeScript)
+- Use functional components with hooks (no class components)
+- Use TailwindCSS for all styling (no inline styles or external CSS files)
+- Respect mood-responsive theming using emotion-based variables (e.g., bg-mood-calm)
+- Components must support dark/light mode with a toggle context
+- Avoid third-party UI libraries unless scoped and justified
+- Keep UI adaptive across mobile, desktop, and tablet (PWA-first design)
+
+# Backend (Node/Express or similar)
+- Use TypeScript
+- Define all routes and handlers in modular route/controller format
+- Validate all API inputs (e.g., with Zod or Joi)
+- Do not use monolithic server files
+
+# Personal Knowledge Graph (PKG)
+- Centralize task, emotion, focus, and goal data in a dedicated `pkg/` service
+- No duplicated user state outside the PKG unless derived for temporary use
+- Use indexedDB or local-first database for local graph
+
+# Gamification + Analytics
+- Task completions must emit XP/incentive events
+- Log emotional/focus state for time-series analytics
+- All analytics logs should be structured (JSON) and routed to a `logger/` module
+
+# Assistant & Voice Integration
+- Abstract assistant API (Google/Siri/Alexa) into a unified `assistant.ts` interface
+- Do not hardcode vendor-specific logic in components
+
+# CBT Tools
+- Store CBT scripts and breathing prompts in structured JSON or Markdown
+- Keep language compassionate, non-directive, and opt-in
+
+# Inference Rules
+- Run local LLM by default; cloud fallback must handle latency and failover
+- Fallback logic must include user notification and transparency
+
+# File + Folder Conventions
+- Use PascalCase for components and agents (e.g., `FocusAgent.ts`)
+- Place agents in `agents/` directory, utilities in `utils/`, and routes in `routes/`
+- Never modify `/legacy/` or `/experimental/` directories
+- Never commit `.env` files or secret keys
+
+# Style & Linting
+- Use Prettier and ESLint with project config (`.eslintrc.js`, `.prettierrc`)
+- Prefer named exports over default exports
+- Enforce strict types — no `any` unless unavoidable with TODO
+
+# Cursor Instructions
+- When generating code:
+  - Use Tailwind for UI
+  - Use event-driven communication for logic
+  - Maintain modular structure
+  - Keep edits safe and scoped
+- Do not modify unrelated files when responding to prompts
+- Avoid auto-writing to `tests/` unless explicitly asked
+
+# Naming
+- Variables: camelCase
+- Components/Agents: PascalCase
+- Events: onEventName
+
+# Comments & Docs
+- Comment logic for adaptive scheduling, emotion tracking, and context shifts
+- Provide inline guidance when logic depends on mood/emotion state

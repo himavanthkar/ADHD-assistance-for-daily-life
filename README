@@ -1,0 +1,140 @@
+# NeuroBoost - Sponsor-Optimized Docker Architecture
+
+version: '3.8'
+
+services:
+  # API Gateway with Sponsor Integrations
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "3000:3000"
+    environment:
+      # Sponsor APIs
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - GOOGLE_GEMINI_API_KEY=${GOOGLE_GEMINI_API_KEY}
+      - VAPI_API_KEY=${VAPI_API_KEY}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - LETTA_API_KEY=${LETTA_API_KEY}
+      - ORKES_API_KEY=${ORKES_API_KEY}
+      # Standard config
+      - JWT_SECRET=${JWT_SECRET}
+    depends_on:
+      - redis
+      - postgres
+    networks:
+      - neuroboost-network
+
+  # AI Agents Service (Sponsor-powered)
+  ai-agents:
+    build: ./ai-agents
+    ports:
+      - "8000:8000"
+    environment:
+      # Primary: Anthropic Claude 4 for complex reasoning
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      # Secondary: Groq for fast inference
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      # Memory: Letta for persistent agent memory
+      - LETTA_API_KEY=${LETTA_API_KEY}
+      # Multimodal: Google Gemini
+      - GOOGLE_GEMINI_API_KEY=${GOOGLE_GEMINI_API_KEY}
+    volumes:
+      - ./models:/app/models
+    depends_on:
+      - redis
+      - postgres
+      - workflow-engine
+    networks:
+      - neuroboost-network
+
+  # Voice Processing Service (Vapi-powered)
+  voice-service:
+    build: ./voice-service
+    ports:
+      - "8002:8002"
+    environment:
+      - VAPI_API_KEY=${VAPI_API_KEY}
+      - VAPI_PHONE_NUMBER=${VAPI_PHONE_NUMBER}
+    depends_on:
+      - ai-agents
+    networks:
+      - neuroboost-network
+
+  # Workflow Engine (Orkes-powered)
+  workflow-engine:
+    build: ./workflow-engine
+    ports:
+      - "8003:8003"
+    environment:
+      - ORKES_API_KEY=${ORKES_API_KEY}
+      - ORKES_SERVER_URL=${ORKES_SERVER_URL}
+    networks:
+      - neuroboost-network
+
+  # Frontend (React/Next.js)
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    environment:
+      - REACT_APP_API_URL=http://api-gateway:3000
+      - REACT_APP_VAPI_PUBLIC_KEY=${VAPI_PUBLIC_KEY}
+    depends_on:
+      - api-gateway
+      - voice-service
+    networks:
+      - neuroboost-network
+
+  # Analytics & Knowledge Graph
+  analytics:
+    build: ./analytics
+    ports:
+      - "8001:8001"
+    environment:
+      - POSTGRES_URL=${POSTGRES_URL}
+      - REDIS_URL=${REDIS_URL}
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - neuroboost-network
+
+  # Core Infrastructure
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=neuroboost
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - neuroboost-network
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis_data:/data
+    networks:
+      - neuroboost-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  neuroboost-network:
+    driver: bridge
+
+# Prize Categories You Can Target:
+# 1. Productivity and Dev Tools Track ($5,000) - Main category
+# 2. Anthropic: Best Use of Claude 4 ($2,500 API credits)
+# 3. Google: Best Use of Gemini (Google Pixel Watches)
+# 4. Vapi: Best Voice-Powered AI Project (500 credits)
+# 5. Vapi: Most Ambitious Vapi Project ($250 + 1000 credits)
+# 6. Groq: Best Creative Use of Groq ($500 API credits + interview)
+# 7. Letta: Most Creative Usage of Letta (AirPods 4)
+# 8. Orkes: Best Use of Orkes ($200)
+# 9. Unify: Best Use of Multimodal AI Agent ($2,500)
+
+# Total Potential Winnings: $15,250+ plus hardware prizes

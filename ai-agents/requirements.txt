@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+pydantic
+python-dotenv
+httpx
+# Add other necessary AI/ML libraries here 

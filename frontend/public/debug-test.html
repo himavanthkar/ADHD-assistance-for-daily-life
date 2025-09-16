@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NeuroBoost Debug Test</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f0f0f0; }
+    .container { max-width: 600px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
+    .status { padding: 10px; margin: 10px 0; border-radius: 4px; }
+    .success { background: #d4edda; color: #155724; }
+    .error { background: #f8d7da; color: #721c24; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🧠 NeuroBoost Debug Test</h1>
+    <p>This page tests basic connectivity and React loading.</p>
+    
+    <div id="tests">
+      <div class="status success">✅ HTML loads correctly</div>
+      <div class="status success">✅ CSS styles work</div>
+      <div id="js-test" class="status error">❌ JavaScript not loaded yet</div>
+      <div id="react-test" class="status error">❌ React not tested yet</div>
+      <div id="api-test" class="status error">❌ API not tested yet</div>
+    </div>
+
+    <h2>Service URLs</h2>
+    <ul>
+      <li><a href="http://localhost:3002" target="_blank">Frontend: http://localhost:3002</a></li>
+      <li><a href="http://localhost:8000/health" target="_blank">AI Agents: http://localhost:8000/health</a></li>
+      <li><a href="http://localhost:8002/health" target="_blank">Voice Service: http://localhost:8002/health</a></li>
+    </ul>
+
+    <div id="console-output">
+      <h3>Console Output:</h3>
+      <div id="console-logs" style="background: #f8f9fa; padding: 10px; border: 1px solid #ddd; font-family: monospace; max-height: 200px; overflow-y: auto;"></div>
+    </div>
+  </div>
+
+  <script>
+    // Test JavaScript
+    document.getElementById('js-test').innerHTML = '✅ JavaScript works';
+    document.getElementById('js-test').className = 'status success';
+
+    // Capture console logs
+    const originalLog = console.log;
+    const originalError = console.error;
+    const consoleDiv = document.getElementById('console-logs');
+    
+    function addToConsole(type, message) {
+      const timestamp = new Date().toLocaleTimeString();
+      consoleDiv.innerHTML += `[${timestamp}] ${type}: ${message}<br>`;
+      consoleDiv.scrollTop = consoleDiv.scrollHeight;
+    }
+    
+    console.log = function(...args) {
+      addToConsole('LOG', args.join(' '));
+      originalLog.apply(console, args);
+    };
+    
+    console.error = function(...args) {
+      addToConsole('ERROR', args.join(' '));
+      originalError.apply(console, args);
+    };
+
+    // Test API connectivity
+    async function testAPIs() {
+      try {
+        const response = await fetch('http://localhost:8000/health');
+        if (response.ok) {
+          document.getElementById('api-test').innerHTML = '✅ API services responding';
+          document.getElementById('api-test').className = 'status success';
+        } else {
+          throw new Error('API not responding');
+        }
+      } catch (error) {
+        document.getElementById('api-test').innerHTML = '❌ API services not responding: ' + error.message;
+        console.error('API test failed:', error);
+      }
+    }
+
+    // Test React loading
+    if (typeof React !== 'undefined') {
+      document.getElementById('react-test').innerHTML = '✅ React is loaded';
+      document.getElementById('react-test').className = 'status success';
+    } else {
+      console.log('React not detected - this is expected for this test page');
+    }
+
+    testAPIs();
+    console.log('Debug test page loaded successfully');
+  </script>
+</body>
+</html> 

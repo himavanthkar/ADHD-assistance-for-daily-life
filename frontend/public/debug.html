@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroBoost Debug</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f0f0f0; }
+        .debug { background: white; padding: 15px; margin: 10px 0; border-radius: 5px; border-left: 4px solid #007bff; }
+        .error { border-left-color: #dc3545; background: #f8d7da; }
+        .success { border-left-color: #28a745; background: #d4edda; }
+    </style>
+</head>
+<body>
+    <h1>🧠 NeuroBoost Debug Page</h1>
+    
+    <div id="log"></div>
+    
+    <script>
+        function log(message, type = 'info') {
+            const logElement = document.getElementById('log');
+            const div = document.createElement('div');
+            div.className = `debug ${type}`;
+            div.innerHTML = `<strong>${new Date().toLocaleTimeString()}:</strong> ${message}`;
+            logElement.appendChild(div);
+            console.log(message);
+        }
+        
+        log('🚀 Debug page loaded', 'success');
+        log('Testing basic JavaScript functionality...');
+        
+        // Test 1: Basic DOM manipulation
+        setTimeout(() => {
+            log('✅ setTimeout working');
+        }, 100);
+        
+        // Test 2: Fetch API
+        fetch('/test.html')
+            .then(response => {
+                log(`✅ Fetch API working - status: ${response.status}`);
+            })
+            .catch(error => {
+                log(`❌ Fetch API failed: ${error.message}`, 'error');
+            });
+        
+        // Test 3: Check if React main script loads
+        fetch('/src/main.jsx')
+            .then(response => response.text())
+            .then(text => {
+                log(`✅ main.jsx loads - length: ${text.length} chars`);
+                if (text.includes('React')) {
+                    log('✅ React import found in main.jsx');
+                } else {
+                    log('❌ React import NOT found', 'error');
+                }
+            })
+            .catch(error => {
+                log(`❌ main.jsx failed to load: ${error.message}`, 'error');
+            });
+        
+        // Test 4: Check Vite client
+        fetch('/@vite/client')
+            .then(response => {
+                log(`✅ Vite client accessible - status: ${response.status}`);
+            })
+            .catch(error => {
+                log(`❌ Vite client failed: ${error.message}`, 'error');
+            });
+        
+        // Test 5: Manual React test
+        log('🔄 Starting manual React test...');
+        
+        // Create a script element to load React
+        const script1 = document.createElement('script');
+        script1.src = 'https://unpkg.com/react@18/umd/react.development.js';
+        script1.onload = () => {
+            log('✅ React loaded externally');
+            
+            const script2 = document.createElement('script');
+            script2.src = 'https://unpkg.com/react-dom@18/umd/react-dom.development.js';
+            script2.onload = () => {
+                log('✅ ReactDOM loaded externally');
+                
+                // Test if React works
+                if (window.React && window.ReactDOM) {
+                    log('✅ React and ReactDOM available globally', 'success');
+                    
+                    const testDiv = document.createElement('div');
+                    testDiv.id = 'react-test';
+                    testDiv.innerHTML = '<h3>React Manual Test</h3><div id="react-mount"></div>';
+                    document.body.appendChild(testDiv);
+                    
+                    try {
+                        const element = React.createElement('div', null, 
+                            React.createElement('h4', null, '🎉 React is working manually!'),
+                            React.createElement('p', null, 'This proves React can work in your browser.')
+                        );
+                        
+                        const root = ReactDOM.createRoot(document.getElementById('react-mount'));
+                        root.render(element);
+                        
+                        log('✅ Manual React render successful!', 'success');
+                    } catch (error) {
+                        log(`❌ Manual React render failed: ${error.message}`, 'error');
+                    }
+                } else {
+                    log('❌ React/ReactDOM not available globally', 'error');
+                }
+            };
+            script2.onerror = () => log('❌ ReactDOM failed to load', 'error');
+            document.head.appendChild(script2);
+        };
+        script1.onerror = () => log('❌ React failed to load', 'error');
+        document.head.appendChild(script1);
+        
+        log('Debug tests initiated. Results will appear above.');
+    </script>
+</body>
+</html> 

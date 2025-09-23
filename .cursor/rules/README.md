@@ -1,60 +1,71 @@
-# Cursor Rules for NeuroBoost
+# NeuroBoost Project Context
 
-This directory contains Cursor rules that provide context and guidance for the AI assistant when working on the NeuroBoost project.
+## 🧠 About NeuroBoost
 
-## Rule Files
+NeuroBoost is an AI-powered ADHD productivity platform that combines voice assistants, mood detection, task management, and focus tracking. Built with a microservices architecture using React, Python, and multiple AI providers.
 
-### `project-overview.mdc`
-- **Type**: Always Applied
-- **Purpose**: Provides general project context and guidelines
-- **When**: Always included in model context
+## 🏗️ Architecture Overview
 
-### `development-workflow.mdc`
-- **Type**: Agent Requested
-- **Purpose**: Guides development workflow and common tasks
-- **When**: Available to AI, which decides whether to include it
+**Frontend**: React/Next.js with TailwindCSS
+- Location: `frontend/`
+- Entry: `frontend/src/main.jsx`
+- Key Components: VoiceAssistantWidget, TaskManager, MoodDetector
 
-### `code-standards.mdc`
-- **Type**: Auto Attached
-- **Purpose**: Enforces coding standards and conventions
-- **When**: Automatically included when working with code files (JS, TS, JSX, TSX, Python, Java, C/C++)
+**Backend Services**:
+- **API Gateway** (`api-gateway/`): Central routing & auth
+- **AI Agents** (`ai-agents/`): Multi-LLM system (Claude, Gemini, Groq)
+- **Voice Service** (`voice-service/`): Vapi integration
+- **Workflow Engine** (`workflow-engine/`): Orkes orchestration
+- **Analytics** (`analytics/`): Data processing
 
-## How to Use
+## 🎯 Key Features
 
-1. **Edit existing rules**: Modify the `.mdc` files to customize the guidance
-2. **Add new rules**: Create new `.mdc` files following the format below
-3. **Reference files**: Use `@filename.ext` to include specific files as context
+1. **Voice-to-Task**: Convert speech to organized tasks using Vapi + AI
+2. **Mood Detection**: Analyze emotional state from voice/text patterns
+3. **Smart Task Management**: Auto-categorization and prioritization
+4. **Focus Tracking**: Real-time attention monitoring
+5. **Adaptive UI**: Dynamic themes based on user mood
 
-## MDC File Format
+## 🔧 Development Guidelines
 
-```yaml
----
-description: Brief description of the rule
-globs: ["**/*.js", "**/*.ts"]  # Optional: file patterns for auto-attachment
-alwaysApply: false  # Optional: whether to always include
----
+**Port Allocation**:
+- Frontend: 8080
+- API Gateway: 3000
+- AI Agents: 8000
+- Voice Service: 8002
+- Workflow Engine: 8003
+- Analytics: 8001
+- Database: 5432 (PostgreSQL), 6379 (Redis)
 
-# Rule content in markdown
-- First guideline
-- Second guideline
-- etc.
-```
+**Key Technologies**:
+- **AI/ML**: Anthropic Claude, Google Gemini, Groq, Letta
+- **Voice**: Vapi for speech processing
+- **Database**: PostgreSQL + Redis + Supabase
+- **Orchestration**: Docker Compose + Orkes Conductor
 
-## Rule Types
+**Environment Variables**:
+Critical API keys: `ANTHROPIC_API_KEY`, `GOOGLE_GEMINI_API_KEY`, `VAPI_API_KEY`, `GROQ_API_KEY`, `LETTA_API_KEY`, `ORKES_API_KEY`
 
-- **Always**: Always included in model context
-- **Auto Attached**: Included when files matching glob patterns are referenced
-- **Agent Requested**: Available to AI, which decides whether to include it
-- **Manual**: Only included when explicitly mentioned using @ruleName
+## 📁 Important Files
 
-## Best Practices
+- `run_app.py`: Main application launcher
+- `start.sh`: Development environment setup
+- `docker-compose.yml`: Service orchestration
+- `test_voice_integration.py`: Integration testing
+- `NEUROBOOST_SETUP.md`: Detailed setup guide
 
-- Keep rules concise (under 500 lines)
-- Split large concepts into multiple, composable rules
-- Provide concrete examples when helpful
-- Avoid vague guidance
-- Use descriptive rule names
+## 🎪 Contest Context
 
-## Legacy Support
+Built for multiple prize categories:
+- Productivity Tools ($5,000)
+- Best use of Claude 4, Gemini, Vapi, Groq, Letta, Orkes
+- Target: $15,250+ in prizes
 
-The `requirements.cursorrules` file in the root is deprecated. Use the `.cursor/rules` directory instead for better organization and control.
+## 🔄 Common Tasks
+
+**Starting Services**: `python run_app.py` or `./start.sh`
+**Testing**: `python test_voice_integration.py`
+**Frontend Dev**: `cd frontend && npm run dev`
+**Database Setup**: `python setup_supabase_auto.py`
+
+When working on this project, prioritize ADHD-friendly features like clear feedback, voice interfaces, and adaptive user experiences.

@@ -126,15 +126,4 @@ networks:
   neuroboost-network:
     driver: bridge
 
-# Prize Categories You Can Target:
-# 1. Productivity and Dev Tools Track ($5,000) - Main category
-# 2. Anthropic: Best Use of Claude 4 ($2,500 API credits)
-# 3. Google: Best Use of Gemini (Google Pixel Watches)
-# 4. Vapi: Best Voice-Powered AI Project (500 credits)
-# 5. Vapi: Most Ambitious Vapi Project ($250 + 1000 credits)
-# 6. Groq: Best Creative Use of Groq ($500 API credits + interview)
-# 7. Letta: Most Creative Usage of Letta (AirPods 4)
-# 8. Orkes: Best Use of Orkes ($200)
-# 9. Unify: Best Use of Multimodal AI Agent ($2,500)
 
-# Total Potential Winnings: $15,250+ plus hardware prizes

@@ -6,7 +6,7 @@ Modern knowledge work rewards output but penalizes cognition. NeuroBoost is a sy
 
 ## Features
 - Automated task ingestion from email and calendar with conflict-aware scheduling  
-- Voice → notes → timetable pipeline with adaptive rescheduling  
+- Voice to notes to timetable pipeline with adaptive rescheduling  
 - Multimodal stress and mood detection across voice, face, and keystrokes  
 - Gamified progress tracking for sustained engagement  
 - Cloud-native deployment with secure defaults  
@@ -16,13 +16,13 @@ Modern knowledge work rewards output but penalizes cognition. NeuroBoost is a sy
 ## Architecture
 At a glance, NeuroBoost runs as a set of cooperating services:
 
-- **Frontend**: React/Next.js user interface  
-- **API Gateway**: request routing, sponsor integrations, and authentication  
-- **AI Agents**: reasoning, inference, and persistent agent memory  
-- **Voice Service**: telephony and voice processing  
-- **Workflow Engine**: orchestration and long-running jobs  
-- **Analytics**: optional knowledge graph and insights  
-- **Core Infrastructure**: PostgreSQL database and Redis cache  
+- Frontend: React/Next.js user interface  
+- API Gateway: request routing, sponsor integrations, and authentication  
+- AI Agents: reasoning, inference, and persistent agent memory  
+- Voice Service: telephony and voice processing  
+- Workflow Engine: orchestration and long-running jobs  
+- Analytics: optional knowledge graph and insights  
+- Core Infrastructure: PostgreSQL database and Redis cache  
 
 **Note**: Only the API Gateway and Frontend are exposed publicly. Databases, caches, and worker services are kept private on the internal bridge network to ensure security.
 
@@ -40,7 +40,7 @@ At a glance, NeuroBoost runs as a set of cooperating services:
 ---
 
 ## Running Locally
-1. Create a `.env` file at the root with required keys (example: `POSTGRES_USER`, `POSTGRES_PASSWORD`, `ANTHROPIC_API_KEY`, etc.).  
+1. Create a `.env` file at the root with required keys (example: POSTGRES_USER, POSTGRES_PASSWORD, ANTHROPIC_API_KEY, etc.).  
 2. Build and start services:  
    ```bash
    docker compose up --build

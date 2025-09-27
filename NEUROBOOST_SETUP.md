@@ -1,6 +1,6 @@
-# 🧠 NeuroBoost - AI-Powered ADHD Productivity Platform
+#  NeuroBoost - AI-Powered ADHD Productivity Platform
 
-## 🎯 **Current Status: WORKING**
+##  **Current Status: WORKING**
 
 ✅ **Voice-to-Task Integration**: Working  
 ✅ **Mood Detection**: Working  
@@ -11,7 +11,7 @@
 
 ---
 
-## 🚀 **Quick Start**
+## **Quick Start**
 
 ### 1. **Start All Services**
 ```bash
@@ -30,9 +30,9 @@ python test_voice_integration.py
 
 ---
 
-## 🔧 **What We Fixed**
+##  **What We Fixed**
 
-### ✅ **Issues Resolved:**
+###  **Issues Resolved:**
 1. **DateTime Import Error**: Fixed `timedelta` import in AI agents
 2. **Firebase Configuration**: Added your project credentials
 3. **User-Specific Data**: Each user gets their own tasks/moods
@@ -40,7 +40,7 @@ python test_voice_integration.py
 5. **Voice Integration**: Working voice-to-task conversion
 6. **Mood Detection**: AI-powered mood analysis with Firebase storage
 
-### 🎨 **Key Features Working:**
+###  **Key Features Working:**
 - **Real-time Mood Detection**: Voice/text → AI analysis → Theme changes
 - **Voice Task Management**: "Add workout to Monday" → Task created
 - **User Separation**: Different users see different data
@@ -49,7 +49,7 @@ python test_voice_integration.py
 
 ---
 
-## 👥 **User System**
+##  **User System**
 
 ### **Different User Types:**
 1. **Regular Users**: Their own tasks, moods, analytics
@@ -69,7 +69,7 @@ python test_voice_integration.py
 
 ---
 
-## 🗂️ **Firebase Data Structure**
+##  **Firebase Data Structure**
 
 ```
 neuroboost-bb20d/
@@ -112,15 +112,15 @@ neuroboost-bb20d/
 
 ---
 
-## 🎨 **Mood-Based Theming**
+##  **Mood-Based Theming**
 
 ### **Available Moods:**
-- **Calm** 😌 → Blue theme
-- **Energetic** ⚡ → Orange theme  
-- **Focused** 🎯 → Green theme
-- **Stressed** 😰 → Purple theme
-- **Happy** 😊 → Yellow theme
-- **Neutral** 😐 → Gray theme
+- **Calm**  → Blue theme
+- **Energetic**  → Orange theme  
+- **Focused**  → Green theme
+- **Stressed**  → Purple theme
+- **Happy** → Yellow theme
+- **Neutral**  → Gray theme
 
 ### **How It Works:**
 1. User speaks/types text
@@ -130,7 +130,7 @@ neuroboost-bb20d/
 
 ---
 
-## 🗣️ **Voice Integration**
+##  **Voice Integration**
 
 ### **How to Use:**
 1. Click voice button (bottom right)
@@ -145,7 +145,7 @@ neuroboost-bb20d/
 
 ---
 
-## 👑 **Admin Dashboard**
+##  **Admin Dashboard**
 
 ### **Admin Features:**
 - View all users
@@ -161,7 +161,7 @@ neuroboost-bb20d/
 
 ---
 
-## 🔥 **Integration Architecture**
+##  **Integration Architecture**
 
 ```
 Frontend (React) ←→ Firebase (User Data)
@@ -200,7 +200,7 @@ VAPI (Voice Interface)
 
 ---
 
-## 🧪 **Testing Commands**
+## **Testing Commands**
 
 ```bash
 # Test all integrations
@@ -218,7 +218,7 @@ curl http://localhost:8002/health
 
 ---
 
-## 🚨 **Troubleshooting**
+## **Troubleshooting**
 
 ### **Common Issues:**
 
@@ -242,9 +242,9 @@ pkill -f "vite"
 
 ---
 
-## 🎉 **What's Working Now**
+## **What's Working Now**
 
-### ✅ **Fully Functional:**
+###  **Fully Functional:**
 1. **User Authentication** (Login/Signup/Logout)
 2. **Voice-to-Task** (Say task → Gets added)
 3. **Mood Detection** (AI analyzes → Theme changes)
@@ -252,7 +252,7 @@ pkill -f "vite"
 5. **Real-time Sync** (Firebase updates instantly)
 6. **Responsive UI** (Works on mobile/desktop)
 
-### 🎯 **Ready for Hackathon:**
+###  **Ready :**
 - Complete ADHD productivity platform
 - AI-powered mood detection
 - Voice interface for accessibility
@@ -262,14 +262,14 @@ pkill -f "vite"
 
 ---
 
-## 🏆 **Hackathon Pitch Points**
+##  **Points**
 
-1. **🧠 ADHD-Specific**: Built specifically for ADHD users
-2. **🗣️ Voice-First**: Accessibility through voice commands
-3. **🎨 Mood-Responsive**: UI adapts to emotional state
-4. **📊 Analytics**: Track productivity and emotional patterns
-5. **👥 Multi-User**: Admin can manage organization/family
-6. **🔄 Real-time**: Instant sync across all devices
-7. **🎯 Evidence-Based**: Uses CBT and productivity techniques
+1. ** ADHD-Specific**: Built specifically for ADHD users
+2. ** Voice-First**: Accessibility through voice commands
+3. **Mood-Responsive**: UI adapts to emotional state
+4. ** Analytics**: Track productivity and emotional patterns
+5. **Multi-User**: Admin can manage organization/family
+6. ** Real-time**: Instant sync across all devices
+7. **Evidence-Based**: Uses CBT and productivity techniques
 
 **The platform combines AI, voice interaction, and psychology to create a truly personalized ADHD productivity solution!** 
